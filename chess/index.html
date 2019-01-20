@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::after, *::before {
+  box-sizing: border-box;
+}
+body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1px;
+  padding: 1px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+.header {
+  grid-column: 1 / -1;
+  padding: 8px;
+  background-color: #34495e;
+  text-align: center;
+}
+button {
+  width: 128px;
+  padding: 8px 0;
+  border: 0;
+  background-color: #27ae60;
+}
+#board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border: 1px solid #777;
+}
+.cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: #333;
+}
+.cell::before {
+  content: "";
+  padding-top: 100%;
+}
+.cell span {
+  color: #555;
+}
+.cell:focus {
+  box-shadow: inset 0 0 0 2px #e74c3c;
+}
+.black {
+  background: #999;
+}
+.white {
+  background: #fff;
+}
+
+.cell[data-name="brook"] { background-image: url(http://rdsgn.ru/chess/img/brook.png); }
+.cell[data-name="bknight"] { background-image: url(http://rdsgn.ru/chess/img/bknight.png); }
+.cell[data-name="bbishop"] { background-image: url(http://rdsgn.ru/chess/img/bbishop.png); }
+.cell[data-name="bqueen"] { background-image: url(http://rdsgn.ru/chess/img/bqueen.png); }
+.cell[data-name="bking"] { background-image: url(http://rdsgn.ru/chess/img/bking.png); }
+.cell[data-name="bpawn"] { background-image: url(http://rdsgn.ru/chess/img/bpawn.png); }
+
+.cell[data-name="wpawn"] { background-image: url(http://rdsgn.ru/chess/img/wpawn.png); }
+.cell[data-name="wrook"] { background-image: url(http://rdsgn.ru/chess/img/wrook.png); }
+.cell[data-name="wknight"] { background-image: url(http://rdsgn.ru/chess/img/wknight.png); }
+.cell[data-name="wbishop"] { background-image: url(http://rdsgn.ru/chess/img/wbishop.png); }
+.cell[data-name="wqueen"] { background-image: url(http://rdsgn.ru/chess/img/wqueen.png); }
+.cell[data-name="wking"] { background-image: url(http://rdsgn.ru/chess/img/wking.png); }
+
+#stat {
+  min-height: 3px;
+  max-height: 640px;
+  overflow: scroll;
+  border: 1px solid #bdc3c7;
+}
+
+.cell[data-type="figure"] {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.cell[data-status="active"] {
+  background-color: #2ecc71;
+}
+.cell[data-status="next-move"] {
+  background-color: #b3ffb3;
+}
+
+    @media screen and (min-width: 642px) {
+      body {
+        grid-template-columns: minmax(320px, 640px) minmax(320px, auto);
+      }
+    }
+    @media screen and (min-width: 900px) {
+      .figure {
+        font-size: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button onclick="begin()">Clear</button>
+  </div>
+  <div id="board"></div>
+  <div id="stat"></div>
+  <script src="main.js?v=083"></script>
+</body>
+</html>
