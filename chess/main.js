@@ -48,9 +48,7 @@ function createCells() {
       }
     }
     cell.y = Math.floor(i / 8);
-    // console.log('Игрек: ' + cell.y);
     cell.x = (i % 8);
-    // console.log('Икс: ' + cell.x);
     cellsArrYX[(Math.floor(i / 8))].push(cell);
   }
 }
@@ -70,7 +68,7 @@ function start() {
 
 function placement(cell, i) {
   cell.setAttribute('title', i);
-  cell.innerHTML = cell.y + ' : ' + cell.x;
+  // cell.innerHTML = cell.y + ' : ' + cell.x;
   if ((i === 0) || (i === 7)) setFiguresAttr(cell, 0);
   if ((i === 1) || (i === 6)) setFiguresAttr(cell, 1);
   if ((i === 2) || (i === 5)) setFiguresAttr(cell, 2);
@@ -87,7 +85,6 @@ function placement(cell, i) {
 }
 
 function setFiguresAttr(cell, figureNumber) {
-  // return true;
   cell.setAttribute('data-type', 'figure');
   cell.setAttribute('data-name', figures[figureNumber].name);
   cell.setAttribute('data-title', figures[figureNumber].title);
@@ -99,16 +96,13 @@ function setFiguresAttr(cell, figureNumber) {
 }
 
 function isClick(cellTarget) {
-  console.log(cellTarget);
-  console.log(cellTarget.y);
-  console.log(cellTarget.x);
   // Если еще нет выбраной фигуры
   if (selectedCell === -1) {
     if ((stepNum % 2 === 0) && (cellTarget.getAttribute('data-color') === 'black')) return console.log('Ход светлых'); // четный ход (белые)
     if ((stepNum % 2 !== 0) && (cellTarget.getAttribute('data-color') === 'white')) return console.log('Ход тёмных'); // нечетный ход (тёмные)
     // Если клик был по фигуре - выбираем её и просчитываем вохможные ходы
     if (cellTarget.getAttribute('data-type')) {
-      console.log('Клик по фигуре');
+      console.log('Клик по фигуре ' + cellTarget.getAttribute('data-title'));
       selectedCell = cellTarget;
       getMoveArr(selectedCell);
       selectedCell.setAttribute('data-status', 'active');
@@ -175,9 +169,9 @@ function getMoveArr(selectedCell) {
 function writeStat(selectedCell, cellTarget) {
   let newP = document.createElement('p');
   if (cellTarget.getAttribute('data-type') !== 'figure') {
-    newP.innerHTML += `Ход ${stepNum}. ${selectedCell.getAttribute('data-title')} с ${selectedCell} на ${cellTarget}.`;
+    newP.innerHTML += `Ход ${stepNum}. ${selectedCell.getAttribute('data-title')} с ${selectedCell.y}:${selectedCell.x} на ${cellTarget.y}:${cellTarget.x}.`;
   } else {
-    newP.innerHTML += `Ход ${stepNum}. ${selectedCell.getAttribute('data-title')} c ${selectedCell} зохавал ${cellTarget.getAttribute('data-title')} на ${cellTarget}.`;
+    newP.innerHTML += `Ход ${stepNum}. ${selectedCell.getAttribute('data-title')} c ${selectedCell.y}:${selectedCell.x} зохавал ${cellTarget.getAttribute('data-title')} на ${cellTarget.y}:${cellTarget.x}.`;
   }
   stat.insertBefore(newP, stat.firstChild);
 }
@@ -217,7 +211,6 @@ function clearMoveArr() {
 }
 
 function moveArrWpawn(selectedCell) { // Светлая пешка
-  console.log('Светлая пешка');
   let formulaMove = [[-1, +0], [-2, +0]];
   let formulaAttack = [[-1, -1], [-1, +1]];
   if (selectedCell.y === 6) {
@@ -269,7 +262,6 @@ function moveArrWpawn(selectedCell) { // Светлая пешка
 }
 
 function moveArrBpawn(selectedCell) { // Тёмная пешка
-  console.log('Тёмная пешка');
   let formulaMove = [[+1, +0], [+2, +0]];
   let formulaAttack = [[+1, -1], [+1, +1]];
   if (selectedCell.y === 1) {
@@ -322,8 +314,7 @@ function moveArrBpawn(selectedCell) { // Тёмная пешка
   }
 }
 
-function moveArrRook(selectedCell) {
-  console.log('Ладья');
+function moveArrRook(selectedCell) { // Ладья и королева
   let y = selectedCell.y; // строка
   let x = selectedCell.x; // ячейка в строке
   for (let i = 1; i < 8; i++) {
@@ -391,8 +382,7 @@ function moveArrRook(selectedCell) {
   }
 }
 
-function moveArrKnight(selectedCell) {
-  console.log('Конь');
+function moveArrKnight(selectedCell) { // Конь
   let formula = [[+2, -1], [+2, +1], [+1, +2], [-1, +2], [-2, +1], [-2, -1], [-1, -2], [+1, -2]];
   for (let i = 0; i < 8; i++) {
     let y = selectedCell.y; // строка
@@ -412,8 +402,7 @@ function moveArrKnight(selectedCell) {
   }
 }
 
-function moveArrBishop(selectedCell) {
-  console.log('Слон');
+function moveArrBishop(selectedCell) { // Слон и королева
   // Влево вверх
   for (let i = 1; i < 8; i++) {
     let y = selectedCell.y - i;
@@ -492,8 +481,7 @@ function moveArrQueen(selectedCell) {
 
 }
 
-function moveArrKing(selectedCell) {
-  console.log('Король');
+function moveArrKing(selectedCell) { // Король
   let formula = [[-1, -1], [-1, 0], [-1, +1], [0, -1], [0, +1], [+1, -1], [+1, 0], [+1, +1]];
   for (let i = 0; i < 8; i++) {
     let y = selectedCell.y; // строка
