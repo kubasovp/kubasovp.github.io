@@ -1,6 +1,6 @@
 const board = document.getElementById('board');
 const stat = document.getElementById('stat');
-let cells = [[], [], [], [], [], [], [], []]; // Основной массив
+let cells = [[],[],[],[],[],[],[],[]]; // Основной массив
 let selected = -1; // Выбранная клетка/фигура
 let moveArr = []; // Расчитанные ходы (расчитываются при выборе фигуры)
 cellsUnderAttack = [];  // Расчитанные ходы всех фигур - для обнаружения шаха (расчитываются после каждого хода)
@@ -29,20 +29,20 @@ function createCells() {
   for (let i = 0; i < 64; i++) {
     let cell = document.createElement('div');
     let cellColor = (((Math.floor(i / 8) + i % 8) % 2) == 0) ? "white" : "black";
-
+    
     cell.classList.add('cell');
     cell.classList.add(cellColor);
     cell.setAttribute('tabindex', '0');
     cell.y = Math.floor(i / 8);
     cell.x = (i % 8);
     cell.setAttribute('title', i);
-
-    cell.onclick = function (event) {
+    
+    cell.onclick = function(event) {
       let target = event.currentTarget;
       isClick(target);
     }
-
-    cell.onkeydown = function (event) { // Управление с клавиатуры
+    
+    cell.onkeydown = function(event) { // Управление с клавиатуры
       let target = event.currentTarget;
       if (event.keyCode == 32) { // клавиша "пробел"
         isClick(target);
@@ -78,14 +78,14 @@ function createCells() {
     if (i < 16) {
       cell.figure.color = 'black';
       magic(cell);
-    }
+    } 
     if (i > 47) {
       cell.figure.color = 'white';
       magic(cell);
     }
-
+    
     cells[(Math.floor(i / 8))].push(cell);
-
+    
     board.appendChild(cell);
   }
 }
@@ -93,7 +93,7 @@ function createCells() {
 const go = start();
 function start() {
   board.innerHTML = '';
-  cellsArrYX = [[], [], [], [], [], [], [], []];
+  cellsArrYX = [[],[],[],[],[],[],[],[]];
   moveArr = [];
   selected = -1;
   stepNum = 1;
@@ -135,56 +135,56 @@ function isClick(target) {
       getMoveArr(selected);
       selected.setAttribute('data-status', 'active');
     }
-    // Если фигура уже выбрана
-  } else {
-    // Если клик по этой же фигуре - снимаем выбор, снимаем выделение и очищаем расчитанные ходы
+  // Если фигура уже выбрана
+  } else { 
+     // Если клик по этой же фигуре - снимаем выбор, снимаем выделение и очищаем расчитанные ходы
     if (selected === target) {
       selected.removeAttribute('data-status', 'active');
       clearMoveArr();
       selected = -1;
       // Если клик по фигуре такого же цвета - перевыбираем фигуру и пересчитываем возможные ходы:
     } else if ((target.figure) && (selected.figure.color === target.figure.color)) {
-      selected.removeAttribute('data-status', 'active');
-      clearMoveArr(); // Очищаем
-      selected = target;
-      getMoveArr(selected);
-      selected.setAttribute('data-status', 'active');
+        selected.removeAttribute('data-status', 'active');
+        clearMoveArr(); // Очищаем
+        selected = target;
+        getMoveArr(selected);
+        selected.setAttribute('data-status', 'active');
       // Если можно сходить - пишем лог, переносим фигуры и обнуляем выбранную фигуру:
+      // если бкинкг и есть некст и нет вайт атак
+    } else if (((selected.figure.name === 'bKing') && (target.getAttribute('data-status') === 'next-move') && (target.getAttribute('data-attack') === 'under-white-attack')) || ((selected.figure.name === 'wKing') && (target.getAttribute('data-status') === 'next-move') && (target.getAttribute('data-attack') === 'under-black-attack'))) {
+          // stepNum++;
+          // writeStat(selected, target);
+          // move(selected, target);
+          // getCellsUnderAttack(target.figure.color);
+          // selected = -1;
+          // kingUnderAttack = 0;
+return;
     } else if ((!kingUnderAttack) && (target.getAttribute('data-status') === 'next-move')) {
-      stepNum++;
-      writeStat(selected, target);
-      move(selected, target);
-      getCellsUnderAttack(target.figure.color);
-      selected = -1;
-      // board.classList.toggle('rotate');
-    } else if ((selected.figure.name === 'bKing') || (selected.figure.name === 'wKing')) {
-      if ((target.getAttribute('data-status') === 'next-move') && (target.getAttribute('data-attack') !== 'under-attack')) {
         stepNum++;
         writeStat(selected, target);
         move(selected, target);
         getCellsUnderAttack(target.figure.color);
         selected = -1;
-        kingUnderAttack = 0;
-      }
-    } else if (kingUnderAttack) {
-      // ходим лобой фигруой и проверяем, есть ли шах
-      stepNum++;
-      writeStat(selected, target);
-      move(selected, target);
-
-      switch (kingUnderAttack.figure.color) {
-        case 'black':
-          getCellsUnderAttack('white');
-          break;
-        case 'white':
-          getCellsUnderAttack('black');
-          break;
-      }
-      selected = -1;
-      if (kingUnderAttack) {
-        alert('Мат: ' + kingUnderAttack.figure.color);
-        сheckmate = 1;
-      }
+        // board.classList.toggle('rotate');
+     } else if (kingUnderAttack) {
+       // ходим лобой фигруой и проверяем, есть ли шах
+       stepNum++;
+       writeStat(selected, target);
+       move(selected, target);
+       
+       switch (kingUnderAttack.figure.color) {
+         case 'black':
+           getCellsUnderAttack('white');
+           break;
+         case 'white':
+           getCellsUnderAttack('black');
+           break;
+       }
+       selected = -1;
+       if (kingUnderAttack) {
+         alert('Мат: ' + kingUnderAttack.figure.color);
+         сheckmate = 1;
+       }
     }
   }
 }
@@ -196,13 +196,19 @@ function getCellsUnderAttack(color) {
   for (let i = 0; i < 64; i++) {
     if ((cellsOne[i].figure) && (cellsOne[i].figure.color === color)) {
       getMoveArr(cellsOne[i], 1);
-      moveArr.forEach(function (item, i, arr) {
+      moveArr.forEach(function(item, i, arr) {
         cellsUnderAttack.push(moveArr[i]);
       });
       clearMoveArr();
-      cellsUnderAttack.forEach(function (item, i, arr) {
-        cellsUnderAttack[i].setAttribute('data-attack', 'under-attack');
-        if ((cellsUnderAttack[i].figure) && ((cellsUnderAttack[i].figure.name == 'bKing') || (cellsUnderAttack[i].figure.name == 'wKing'))) {
+      cellsUnderAttack.forEach(function(item, i, arr) {
+        if (color === 'white') {
+          cellsUnderAttack[i].setAttribute('data-attack', 'under-white-attack');
+        } else {
+          cellsUnderAttack[i].setAttribute('data-attack', 'under-black-attack');
+        }
+        
+        // если фигура, если ее цвет не равен color
+        if ((cellsUnderAttack[i].figure) && (cellsUnderAttack[i].figure.color !== color) && ((cellsUnderAttack[i].figure.name == 'bKing') || (cellsUnderAttack[i].figure.name == 'wKing'))) {
           cellsUnderAttack[i].setAttribute('data-attack', 'king-under-attack');
           kingUnderAttack = cellsUnderAttack[i];
         }
@@ -216,49 +222,49 @@ function getCellsUnderAttack(color) {
 
 function getMoveArr(selected, attack) {
   switch (selected.figure.name) {
-    case 'wPawn':
-    case 'bPawn':
-      moveArrPawn(selected, attack);
-      break;
-    case 'bRookL':
-    case 'bRookR':
-    case 'wRookL':
-    case 'wRookR':
+  case 'wPawn':
+  case 'bPawn':
+    moveArrPawn(selected, attack);
+    break;
+  case 'bRookL':
+  case 'bRookR':
+  case 'wRookL':
+  case 'wRookR':
+    moveArrRook(selected);
+    break;
+  case 'bKnight':
+  case 'wKnight':
+    moveArrKnight(selected);
+    break;
+  case 'bBishop':
+  case 'wBishop':
+    moveArrBishop(selected);
+    break;
+  case 'bQueen':
+  case 'wQueen':
       moveArrRook(selected);
-      break;
-    case 'bKnight':
-    case 'wKnight':
-      moveArrKnight(selected);
-      break;
-    case 'bBishop':
-    case 'wBishop':
       moveArrBishop(selected);
-      break;
-    case 'bQueen':
-    case 'wQueen':
-      moveArrRook(selected);
-      moveArrBishop(selected);
-      break;
-    case 'bKing':
-    case 'wKing':
-      moveArrKing(selected);
-      break;
-    default:
-      break;
+    break;
+  case 'bKing':
+  case 'wKing':
+    moveArrKing(selected);
+    break;
+  default:
+    break;
   }
   if (!attack) {
-    moveArr.forEach(function (item, i, arr) {
+    moveArr.forEach(function(item, i, arr) {
       moveArr[i].setAttribute('data-status', 'next-move');
     });
   }
 }
 
 function move(selected, target) {
-
+  
   target.figure = selected.figure;
   selected.figure = null;
   magic(target);
-
+  
   // Пешка становится королевой
   if ((target.figure.name === 'wPawn') && (target.y === 0)) {
     alert('Ферзь');
@@ -277,12 +283,12 @@ function move(selected, target) {
   if (target.figure.name === 'bKing') {
     target.figure.firstMove = 1;
   }
-
+  
   // Ладья сделала первый ход
   if ((target.figure.name === 'bRookL') || (target.figure.name === 'bRookR')) {
     target.figure.firstMove = 1;
   }
-  if ((target.figure.name === 'wRookL') || (target.figure.name === 'wRookR')) {
+    if ((target.figure.name === 'wRookL') || (target.figure.name === 'wRookR')) {
     target.figure.firstMove = 1;
   }
 
@@ -332,7 +338,7 @@ function moveArrPawn(selected, attack) { // Пешки
       moveArr.push(cells[y - 1][x + 1]);
     }
   }
-
+  
   if (selected.figure.color === 'black') {
     // ход
     if ((cells[y + 1][x]) && (!cells[y + 1][x].figure) && (!attack)) {
@@ -424,7 +430,7 @@ function moveArrRook(selected) { // Ладья и королева
 }
 
 function moveArrKnight(selected) { // Конь
-  let formula = [[+2, -1], [+2, +1], [+1, +2], [-1, +2], [-2, +1], [-2, -1], [-1, -2], [+1, -2]];
+  let formula = [[+2, -1],[+2, +1],[+1, +2],[-1, +2],[-2, +1],[-2, -1],[-1, -2],[+1, -2]];
   for (let i = 0; i < 8; i++) {
     let y = selected.y; // строка
     let x = selected.x; // ячейка в строке
@@ -520,7 +526,7 @@ function moveArrBishop(selected) { // Слон и королева
 
 function moveArrKing(selected) { // Король
   // console.log(selected.figure.firstMove === 0);
-  let formula = [[-1, -1], [-1, 0], [-1, +1], [0, -1], [0, +1], [+1, -1], [+1, 0], [+1, +1]];
+  let formula = [[-1, -1],[-1, 0],[-1, +1],[0, -1],[0, +1],[+1, -1],[+1, 0],[+1, +1]];
   for (let i = 0; i < 8; i++) {
     let y = selected.y; // строка
     let x = selected.x; // ячейка в строке
@@ -554,7 +560,7 @@ function moveArrKing(selected) { // Король
         cells[y][x - 2].setAttribute('data-roque', 'left');
         moveArr.push(cells[y][x - 2]);
       }
-    }
+    } 
   }
 }
 
