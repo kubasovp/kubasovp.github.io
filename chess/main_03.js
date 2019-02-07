@@ -150,8 +150,9 @@ function isClick(target) {
       getMoveArr(selected);
       selected.setAttribute('data-status', 'active');
       // Если можно сходить - пишем лог, переносим фигуры и обнуляем выбранную фигуру:
-      // если бкинкг и есть некст и нет вайт атак
+      // если король и есть некст и есть вайт атак - ретурн
     } else if (((selected.figure.name === 'bKing') && (target.getAttribute('data-status') === 'next-move') && (target.getAttribute('data-attack') === 'under-white-attack')) || ((selected.figure.name === 'wKing') && (target.getAttribute('data-status') === 'next-move') && (target.getAttribute('data-attack') === 'under-black-attack'))) {
+      console.log('если король и есть некст и есть вайт атак');
       // stepNum++;
       // writeStat(selected, target);
       // move(selected, target);
@@ -166,7 +167,7 @@ function isClick(target) {
       getCellsUnderAttack(target.figure.color);
       selected = -1;
       // board.classList.toggle('rotate');
-    } else if (kingUnderAttack) {
+    } else if ((kingUnderAttack) && (target.getAttribute('data-status') === 'next-move')) {
       // ходим лобой фигруой и проверяем, есть ли шах
       stepNum++;
       writeStat(selected, target);
