@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Solar system</title>
+	</head>
+	<body>
+		<canvas id="solar"></canvas>
+
+		<div class="controls">
+			<label class="controls__label speed__label">
+				Скорость:
+				<input id="speed" type="range" min="1000" max="30000" step="1000" value="10000" class="controls__slider">
+				<span id="speedLabel" class="controls__value">1 год = 10.0 сек</span>
+			</label>
+
+			<div class="controls__label fit-label">
+				<span>Масштаб:</span>
+				<label>
+					<input type="radio" name="fitMode" value="cover" checked>
+					заполнить
+				</label>
+				<label>
+					<input type="radio" name="fitMode" value="contain">
+					вписать
+				</label>
+			</div>
+
+			<label class="controls__label names__label">
+				<input id="labelsToggle" type="checkbox" class="controls__checkbox">
+				Показать названия
+			</label>
+		</div>
+
+		<script type="module" src="/src/main.js"></script>
+	</body>
+</html>
