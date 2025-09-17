@@ -1,5 +1,5 @@
 import './style.scss'
-import { setCanvas, state } from "./state.js";
+import { setCanvas } from "./state.js";
 import { updateScale } from "./utils/scaling.js";
 import { bindControls } from "./controls.js";
 import { animate } from "./animation.js";

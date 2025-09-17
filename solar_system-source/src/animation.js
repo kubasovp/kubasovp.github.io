@@ -1,4 +1,4 @@
-import { state, canvas } from "./state.js";
+import { state } from "./state.js";
 import { updatePlanets, drawPlanets } from "./render/planets.js";
 import { drawBackground } from "./render/background.js";
 import { drawOrbits } from "./render/orbits.js";
