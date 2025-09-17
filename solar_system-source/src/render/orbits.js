@@ -1,5 +1,6 @@
-import { state, ctx } from "../state.js";
+// src/render/orbits.js
 import { planets } from "../data/planets.js";
+import { state, ctx } from "../state.js";
 
 export function drawOrbits() {
 	ctx.font = "10px sans-serif";
@@ -9,8 +10,10 @@ export function drawOrbits() {
 
 	for (let p of planets) {
 		const a = p.dist * state.scale; // большая полуось
-		const b = a * Math.sqrt(1 - (p.eccentricity || 0) ** 2); // малая полуось
-		const cx = state.cx;
+		const e = p.eccentricity || 0;
+		const b = a * Math.sqrt(1 - e ** 2); // малая полуось
+		const f = a * e; // смещение фокуса
+		const cx = state.cx - f; // центр эллипса смещён относительно Солнца
 		const cy = state.cy;
 
 		// орбита — эллипс

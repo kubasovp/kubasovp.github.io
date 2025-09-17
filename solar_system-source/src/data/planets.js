@@ -7,4 +7,7 @@ export const planets = [
 	{ name: "Saturn", dist: 1430, diameter: 116460, period: 29.46, color: "gold", eccentricity: 0.056 },
 	{ name: "Uranus", dist: 2870, diameter: 50724, period: 84.0, color: "lightblue", eccentricity: 0.046 },
 	{ name: "Neptune", dist: 4500, diameter: 49244, period: 165.0, color: "blue", eccentricity: 0.010 }
-].map(p => ({ ...p, angle: Math.random() * Math.PI * 2 }));
+].map(p => ({
+	...p,
+	M: Math.random() * 2 * Math.PI // стартовая средняя аномалия
+}));
