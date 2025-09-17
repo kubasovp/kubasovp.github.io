@@ -32,7 +32,7 @@ export function drawPlanets() {
 		const E = solveKepler(p.meanAnomaly, e);
 
 		// координаты планеты
-		const x = cx + a * Math.cos(E); // поправка на фокус
+		const x = cx + a * Math.cos(E);
 		const y = cy + b * Math.sin(E);
 
 		const radius = Math.max(1, (p.diameter / state.planetScale) / 2);
