@@ -5,7 +5,7 @@ export const state = {
 	planetScale: 2000,
 	cx: 0,
 	cy: 0,
-	YEAR_MS: 2000,
+	YEAR_MS: 10000,
 	lastTime: performance.now()
 };
 
