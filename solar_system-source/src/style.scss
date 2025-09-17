@@ -1,3 +1,8 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body, html {
 	margin: 0;
 	padding: 0;
@@ -5,6 +10,7 @@ body, html {
 	width: 100%;
 	background: black;
 }
+
 canvas {
 	display: block;
 	width: 100vw;
@@ -24,6 +30,8 @@ canvas {
   font: 16px sans-serif;
   color: white;
   background: rgba(255, 255, 255, 0.05);
+	user-select: none;
+	align-items: center;
 }
 
 .speed__label {
@@ -38,9 +46,6 @@ canvas {
 }
 
 .fit-label, .names__label {
-  display: flex;
-  align-items: center;
-  gap: 4px;
   white-space: nowrap;
 }
 
