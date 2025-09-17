@@ -1,4 +1,3 @@
-// src/render/orbits.js
 import { planets } from "../data/planets.js";
 import { state, ctx } from "../state.js";
 

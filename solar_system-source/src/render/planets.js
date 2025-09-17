@@ -1,8 +1,7 @@
-// src/render/planets.js
 import { state, ctx } from "../state.js";
 import { planets } from "../data/planets.js";
 
-// Решение уравнения Кеплера методом Ньютона
+// Уравнение Кеплера
 function solveKepler(M, e, iterations = 5) {
 	let E = M;
 	for (let i = 0; i < iterations; i++) {
@@ -28,10 +27,8 @@ export function drawPlanets() {
 		const cx = state.cx - f; // центр эллипса смещён относительно Солнца
 		const cy = state.cy;
 
-		// решение уравнения Кеплера
-		const E = solveKepler(p.meanAnomaly, e);
-
 		// координаты планеты
+		const E = solveKepler(p.meanAnomaly, e);
 		const x = cx + a * Math.cos(E);
 		const y = cy + b * Math.sin(E);
 
