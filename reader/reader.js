@@ -3,10 +3,27 @@ const documentElement = document.querySelector(".reader__document");
 const previousButton = document.querySelector("[data-reader-previous]");
 const nextButton = document.querySelector("[data-reader-next]");
 const progressElement = document.querySelector(".reader__progress");
+const reader = document.querySelector(".reader");
+const settings = document.querySelector(".reader-settings");
+const settingsToggle = document.querySelector("[data-reader-settings-toggle]");
+const settingsClose = document.querySelector("[data-reader-settings-close]");
+const fontSizeInputs = document.querySelectorAll('input[name="font-size"]');
 
 let currentPage = 0;
 let pageCount = 1;
 let paginationFrame;
+
+function setSettingsOpen(isOpen) {
+  settings.classList.toggle("reader-settings_open", isOpen);
+  settings.setAttribute("aria-hidden", String(!isOpen));
+  settingsToggle.setAttribute("aria-expanded", String(isOpen));
+
+  if (isOpen) {
+    settings.querySelector('input[name="font-size"]:checked').focus();
+  } else {
+    settingsToggle.focus();
+  }
+}
 
 function getPageMetrics() {
   const columnGap = Number.parseFloat(getComputedStyle(documentElement).columnGap) || 0;
@@ -49,9 +66,27 @@ function schedulePagination() {
 
 previousButton.addEventListener("click", () => showPage(currentPage - 1));
 nextButton.addEventListener("click", () => showPage(currentPage + 1));
+settingsToggle.addEventListener("click", () => {
+  setSettingsOpen(settingsToggle.getAttribute("aria-expanded") !== "true");
+});
+settingsClose.addEventListener("click", () => setSettingsOpen(false));
+fontSizeInputs.forEach((input) => {
+  input.addEventListener("change", () => {
+    reader.dataset.fontSize = input.value;
+    schedulePagination();
+  });
+});
 
 window.addEventListener("keydown", (event) => {
   if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+
+  if (event.key === "Escape" && settingsToggle.getAttribute("aria-expanded") === "true") {
+    event.preventDefault();
+    setSettingsOpen(false);
+    return;
+  }
+
+  if (settingsToggle.getAttribute("aria-expanded") === "true") return;
 
   if (event.key === "ArrowLeft" || event.key === "PageUp") {
     event.preventDefault();
