@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Мои книги — Читалка</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="page">
+    <header class="app-header">
+      <div class="app-header__inner page__container">
+        <h1 class="app-header__title">Мои книги</h1>
+        <nav class="app-header__actions" aria-label="Основная навигация">
+          <a class="button button_primary" href="catalog.html">Добавить книгу</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="section page__container" aria-labelledby="books-title">
+        <header class="section__header">
+          <div>
+            <h2 class="section__title" id="books-title">Библиотека</h2>
+            <p class="section__description">Книги, доступные на этом устройстве</p>
+          </div>
+        </header>
+        <ul class="book-grid">
+          <li class="book-grid__item">
+            <article class="book-card">
+              <div class="book-card__cover" aria-hidden="true">4</div>
+              <div class="book-card__body">
+                <header class="book-card__header">
+                  <h3 class="book-card__title">Четыре желания</h3>
+                  <p class="book-card__author">Константин Ушинский</p>
+                </header>
+                <p class="book-card__meta"><span class="book-card__status">Страница 3 из 5</span><span>Продолжить чтение</span></p>
+                <div class="book-card__actions"><a class="button button_primary" href="index.html">Читать</a></div>
+              </div>
+            </article>
+          </li>
+          <li class="book-grid__item">
+            <article class="book-card">
+              <div class="book-card__cover" aria-hidden="true">Ф</div>
+              <div class="book-card__body">
+                <header class="book-card__header">
+                  <h3 class="book-card__title">Филипок</h3>
+                  <p class="book-card__author">Лев Толстой</p>
+                </header>
+                <p class="book-card__meta"><span class="book-card__status">Ещё не открывалась</span></p>
+                <div class="book-card__actions"><button class="button" type="button">Начать читать</button></div>
+              </div>
+            </article>
+          </li>
+          <li class="book-grid__item">
+            <article class="book-card">
+              <div class="book-card__cover" aria-hidden="true">Л</div>
+              <div class="book-card__body">
+                <header class="book-card__header">
+                  <h3 class="book-card__title">Лев и собачка</h3>
+                  <p class="book-card__author">Лев Толстой</p>
+                </header>
+                <p class="book-card__meta"><span class="book-card__status">Прочитана</span><span>5 страниц</span></p>
+                <div class="book-card__actions"><button class="button" type="button">Читать снова</button></div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Каталог — Читалка</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="page">
+    <header class="app-header">
+      <div class="app-header__inner page__container">
+        <h1 class="app-header__title">Каталог</h1>
+        <nav class="app-header__actions" aria-label="Основная навигация"><a class="button" href="books.html">Мои книги</a></nav>
+      </div>
+    </header>
+    <main>
+      <section class="section page__container" aria-labelledby="catalog-title">
+        <header class="section__header">
+          <div>
+            <h2 class="section__title" id="catalog-title">Добавить книгу</h2>
+            <p class="section__description">Книги загружаются на устройство и доступны без интернета</p>
+          </div>
+        </header>
+        <ul class="book-grid">
+          <li class="book-grid__item"><article class="catalog-card"><header class="catalog-card__header"><h3 class="catalog-card__title">Четыре желания</h3><p class="catalog-card__author">Константин Ушинский</p></header><footer class="catalog-card__footer"><span class="catalog-card__size">EPUB · 420 КБ</span><button class="button" type="button" disabled>Уже в библиотеке</button></footer></article></li>
+          <li class="book-grid__item"><article class="catalog-card"><header class="catalog-card__header"><h3 class="catalog-card__title">Филипок</h3><p class="catalog-card__author">Лев Толстой</p></header><footer class="catalog-card__footer"><span class="catalog-card__size">EPUB · 360 КБ</span><button class="button button_primary" type="button">Скачать</button></footer></article></li>
+          <li class="book-grid__item"><article class="catalog-card"><header class="catalog-card__header"><h3 class="catalog-card__title">Лев и собачка</h3><p class="catalog-card__author">Лев Толстой</p></header><footer class="catalog-card__footer"><span class="catalog-card__size">EPUB · 510 КБ</span><button class="button button_primary" type="button">Скачать</button></footer></article></li>
+          <li class="book-grid__item"><article class="catalog-card"><header class="catalog-card__header"><h3 class="catalog-card__title">Серая Шейка</h3><p class="catalog-card__author">Дмитрий Мамин-Сибиряк</p></header><footer class="catalog-card__footer"><span class="catalog-card__size">EPUB · 1,2 МБ</span><button class="button button_primary" type="button">Скачать</button></footer></article></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
