@@ -8,10 +8,21 @@ const settings = document.querySelector(".reader-settings");
 const settingsToggle = document.querySelector("[data-reader-settings-toggle]");
 const settingsClose = document.querySelector("[data-reader-settings-close]");
 const fontSizeInputs = document.querySelectorAll('input[name="font-size"]');
+const fontSizeStorageKey = "reader-font-size";
 
 let currentPage = 0;
 let pageCount = 1;
 let paginationFrame;
+
+function restoreFontSize() {
+  const savedFontSize = localStorage.getItem(fontSizeStorageKey);
+  const savedInput = Array.from(fontSizeInputs).find((input) => input.value === savedFontSize);
+
+  if (!savedInput) return;
+
+  savedInput.checked = true;
+  reader.dataset.fontSize = savedInput.value;
+}
 
 function setSettingsOpen(isOpen) {
   settings.classList.toggle("reader-settings_open", isOpen);
@@ -73,6 +84,7 @@ settingsClose.addEventListener("click", () => setSettingsOpen(false));
 fontSizeInputs.forEach((input) => {
   input.addEventListener("change", () => {
     reader.dataset.fontSize = input.value;
+    localStorage.setItem(fontSizeStorageKey, input.value);
     schedulePagination();
   });
 });
@@ -101,4 +113,5 @@ window.addEventListener("keydown", (event) => {
 
 window.addEventListener("resize", schedulePagination);
 document.fonts?.ready.then(schedulePagination);
+restoreFontSize();
 paginate();

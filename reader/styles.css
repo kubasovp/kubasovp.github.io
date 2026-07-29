@@ -58,8 +58,8 @@ h1, h2, h3, p { margin-block-start: 0; }
 .reader__main { overflow: hidden; }
 .reader__page { height: 100%; padding: 1.25rem 1rem; overflow: hidden; }
 .reader__viewport { height: 100%; max-width: 38rem; margin-inline: auto; overflow: hidden; }
-.reader__document { height: 100%; column-count: 1; column-fill: auto; column-gap: 2rem; font-size: var(--reader-font-size); line-height: 1.65; }
-.reader__document h1 { margin-bottom: 1.25rem; font-size: 1.65rem; line-height: 1.25; }
+.reader__document { height: 100%; column-count: 1; column-fill: auto; column-gap: 2rem; font-family: "Literata", serif; font-size: var(--reader-font-size); font-optical-sizing: auto; font-kerning: normal; font-variant-ligatures: common-ligatures contextual; font-size-adjust: from-font; letter-spacing: .002em; line-height: 1.55; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+.reader__document h1 { margin-bottom: 1.25rem; font-size: 1.65rem; line-height: 1.25; text-wrap: balance; }
 .reader__document p { margin-block: 0 1em; orphans: 2; widows: 2; }
 .reader__navigation { min-height: 4.25rem; }
 .reader__progress { min-width: 4rem; text-align: center; }
