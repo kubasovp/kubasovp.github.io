@@ -9,9 +9,8 @@
   <body class="page">
     <header class="app-header">
       <div class="app-header__inner page__container">
-        <h1 class="app-header__title">Мои книги</h1>
         <nav class="app-header__actions" aria-label="Основная навигация">
-          <a class="button button_primary" href="catalog.html">Добавить книгу</a>
+          <a class="button button_primary" href="catalog.html">Скачать книгу</a>
         </nav>
       </div>
     </header>
@@ -19,7 +18,7 @@
       <section class="section page__container" aria-labelledby="books-title">
         <header class="section__header">
           <div>
-            <h2 class="section__title" id="books-title">Библиотека</h2>
+            <h1 class="section__title" id="books-title">Моя библиотека</h1>
             <p class="section__description">Книги, доступные на этом устройстве</p>
           </div>
         </header>
@@ -29,11 +28,15 @@
               <div class="book-card__cover" aria-hidden="true">4</div>
               <div class="book-card__body">
                 <header class="book-card__header">
-                  <h3 class="book-card__title">Четыре желания</h3>
+                  <h2 class="book-card__title">Четыре желания</h2>
                   <p class="book-card__author">Константин Ушинский</p>
                 </header>
-                <p class="book-card__meta"><span class="book-card__status">Страница 3 из 5</span><span>Продолжить чтение</span></p>
-                <div class="book-card__actions"><a class="button button_primary" href="index.html">Читать</a></div>
+                <p class="book-card__meta">
+                  <span class="book-card__status">Страница 3 из 5</span>
+                </p>
+                <div class="book-card__actions">
+                  <a class="button button_primary" href="index.html">Продолжить чтение</a>
+                </div>
               </div>
             </article>
           </li>
@@ -42,11 +45,12 @@
               <div class="book-card__cover" aria-hidden="true">Ф</div>
               <div class="book-card__body">
                 <header class="book-card__header">
-                  <h3 class="book-card__title">Филипок</h3>
+                  <h2 class="book-card__title">Филипок</h2>
                   <p class="book-card__author">Лев Толстой</p>
                 </header>
-                <p class="book-card__meta"><span class="book-card__status">Ещё не открывалась</span></p>
-                <div class="book-card__actions"><button class="button" type="button">Начать читать</button></div>
+                <div class="book-card__actions">
+                  <button class="button" type="button">Начать читать</button>
+                </div>
               </div>
             </article>
           </li>
@@ -55,11 +59,15 @@
               <div class="book-card__cover" aria-hidden="true">Л</div>
               <div class="book-card__body">
                 <header class="book-card__header">
-                  <h3 class="book-card__title">Лев и собачка</h3>
+                  <h2 class="book-card__title">Лев и собачка</h2>
                   <p class="book-card__author">Лев Толстой</p>
                 </header>
-                <p class="book-card__meta"><span class="book-card__status">Прочитана</span><span>5 страниц</span></p>
-                <div class="book-card__actions"><button class="button" type="button">Читать снова</button></div>
+                <p class="book-card__meta">
+                  <span class="book-card__status">Прочитана</span>
+                </p>
+                <div class="book-card__actions">
+                  <button class="button" type="button">Читать снова</button>
+                </div>
               </div>
             </article>
           </li>
