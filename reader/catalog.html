@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Каталог — Читалка</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="page">
+    <header class="app-header">
+      <div class="app-header__inner page__container">
+        <nav class="app-header__actions" aria-label="Основная навигация">
+          <a class="button" href="books.html">Мои книги</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="section page__container" aria-labelledby="catalog-title">
+        <header class="section__header">
+          <div>
+            <h1 class="section__title" id="catalog-title">Скачать книгу</h1>
+            <p class="section__description">Книги загружаются на устройство и доступны без интернета</p>
+          </div>
+        </header>
+        <ul class="book-grid">
+          <li class="book-grid__item">
+            <article class="catalog-card">
+              <header class="catalog-card__header">
+                <h2 class="catalog-card__title">Филипок</h2>
+                <p class="catalog-card__author">Лев Толстой</p>
+              </header>
+              <footer class="catalog-card__footer">
+                <button class="button button_primary" type="button">Скачать (360 КБ)</button>
+              </footer>
+            </article>
+          </li>
+          <li class="book-grid__item">
+            <article class="catalog-card">
+              <header class="catalog-card__header">
+                <h2 class="catalog-card__title">Лев и собачка</h2>
+                <p class="catalog-card__author">Лев Толстой</p>
+              </header>
+              <footer class="catalog-card__footer">
+                <button class="button button_primary" type="button">Скачать (510 КБ)</button>
+              </footer>
+            </article>
+          </li>
+          <li class="book-grid__item">
+            <article class="catalog-card">
+              <header class="catalog-card__header">
+                <h2 class="catalog-card__title">Серая Шейка</h2>
+                <p class="catalog-card__author">Дмитрий Мамин-Сибиряк</p>
+              </header>
+              <footer class="catalog-card__footer">
+                <button class="button button_primary" type="button">Скачать (1,2 МБ)</button>
+              </footer>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
