@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Читаю сейчас — Reader</title>
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body>
     <main class="library" aria-labelledby="reading-title">
@@ -23,24 +23,27 @@
         <article class="book-card">
           <h2 class="book-card__title">Четыре желания</h2>
           <p class="book-card__author">Константин Дмитриевич Ушинский</p>
-          <p class="book-card__status">Место чтения сохранено</p>
-          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
+          <div class="book-card__actions">
+            <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
+          </div>
         </article>
 
         <article class="book-card">
           <h2 class="book-card__title">Daniel Radcliffe</h2>
           <p class="book-card__author">Vicky Shipton</p>
-          <p class="book-card__status">Место чтения сохранено</p>
-          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
-          <button class="button button_text book-card__delete" type="button">Удалить из Reader</button>
+          <div class="book-card__actions">
+            <button class="button button_text book-card__delete" type="button" onclick="confirm('Удалить книгу из Reader?')">Удалить</button>
+            <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
+          </div>
         </article>
 
         <article class="book-card">
           <h2 class="book-card__title">Как устроена экономика</h2>
           <p class="book-card__author">Ха-Джун Чанг</p>
-          <p class="book-card__status">Место чтения сохранено</p>
-          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
-          <button class="button button_text book-card__delete" type="button">Удалить из Reader</button>
+          <div class="book-card__actions">
+            <button class="button button_text book-card__delete" type="button" onclick="confirm('Удалить книгу из Reader?')">Удалить</button>
+            <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
+          </div>
         </article>
       </div>
     </main>
