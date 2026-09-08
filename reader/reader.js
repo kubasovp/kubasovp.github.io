@@ -1,5 +1,4 @@
 const viewport = document.querySelector(".reader__viewport");
-const documentElement = document.querySelector(".reader__document");
 const previousButton = document.querySelector("[data-reader-previous]");
 const nextButton = document.querySelector("[data-reader-next]");
 const progressElement = document.querySelector(".reader__progress");
@@ -41,9 +40,8 @@ function setSettingsOpen(isOpen) {
 }
 
 function getPageMetrics() {
-  const columnGap = Number.parseFloat(getComputedStyle(documentElement).columnGap) || 0;
-  const pageWidth = viewport.clientWidth + columnGap;
-  const contentWidth = viewport.scrollWidth + columnGap;
+  const pageWidth = viewport.clientWidth;
+  const contentWidth = viewport.scrollWidth;
 
   return {
     pageWidth,
