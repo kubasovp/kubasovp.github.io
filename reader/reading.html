@@ -4,16 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Читаю сейчас — Reader</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body>
     <main class="library" aria-labelledby="reading-title">
-      <h1 class="library__title" id="reading-title">Читаю сейчас</h1>
-
-      <nav class="library__nav" aria-label="Разделы библиотеки">
-        <a class="button button_primary" href="reading.html" aria-current="page">Читаю сейчас</a>
-        <a class="button button_outline" href="books.html">Моя библиотека</a>
-      </nav>
+      <details class="library-switcher">
+        <summary class="library-switcher__summary">
+          <h1 class="library__title" id="reading-title">Читаю сейчас</h1>
+        </summary>
+        <nav class="library-switcher__menu" aria-label="Разделы библиотеки">
+          <a class="library-switcher__item" href="books.html">Моя библиотека</a>
+        </nav>
+      </details>
 
       <p class="library__subtitle library__subtitle_spaced">Книги, чтение которых уже начато</p>
 

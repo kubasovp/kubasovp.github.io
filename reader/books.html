@@ -4,16 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Моя библиотека — Reader</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body>
     <main class="library" aria-labelledby="library-title">
-      <h1 class="library__title" id="library-title">Моя библиотека</h1>
-
-      <nav class="library__nav" aria-label="Разделы библиотеки">
-        <a class="button button_outline" href="reading.html">Читаю сейчас</a>
-        <a class="button button_primary" href="books.html" aria-current="page">Моя библиотека</a>
-      </nav>
+      <details class="library-switcher">
+        <summary class="library-switcher__summary">
+          <h1 class="library__title" id="library-title">Моя библиотека</h1>
+        </summary>
+        <nav class="library-switcher__menu" aria-label="Разделы библиотеки">
+          <a class="library-switcher__item" href="reading.html">Читаю сейчас</a>
+        </nav>
+      </details>
 
       <div class="library__toolbar">
         <p class="library__subtitle">Все книги · по автору</p>
