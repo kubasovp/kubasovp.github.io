@@ -4,46 +4,56 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Моя библиотека — Reader</title>
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <main class="library" aria-labelledby="library-title">
       <h1 class="library__title" id="library-title">Моя библиотека</h1>
 
-      <a class="button button_outline library__add" href="add-book.html">Добавить книгу</a>
+      <nav class="library__nav" aria-label="Разделы библиотеки">
+        <a class="button button_outline" href="reading.html">Читаю сейчас</a>
+        <a class="button button_primary" href="books.html" aria-current="page">Моя библиотека</a>
+      </nav>
 
-      <p class="library__subtitle">Книги для самостоятельного чтения</p>
+      <div class="library__toolbar">
+        <p class="library__subtitle">Все книги · по автору</p>
+        <a class="button button_outline" href="add-book.html">Добавить книгу</a>
+      </div>
 
-      <div class="library__books">
-        <article class="book-card">
-          <h2 class="book-card__title">Четыре желания</h2>
-          <p class="book-card__author">Константин Дмитриевич Ушинский</p>
-          <p class="book-card__status">Место чтения сохранено</p>
-          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
-        </article>
+      <div class="author-list">
+        <section class="author-card" aria-labelledby="author-ushinsky">
+          <h2 class="author-card__title" id="author-ushinsky">Константин Дмитриевич Ушинский</h2>
+          <ul class="author-card__books">
+            <li class="author-card__book">
+              <span>Четыре желания</span>
+              <a class="button button_text author-card__action" href="index.html">читать</a>
+            </li>
+            <li class="author-card__book">
+              <span>Репка</span>
+              <a class="button button_text author-card__action" href="index.html">читать</a>
+            </li>
+          </ul>
+        </section>
 
-        <article class="book-card">
-          <h2 class="book-card__title">Репка</h2>
-          <p class="book-card__author">Русская народная сказка в обработке К. Д. Ушинского</p>
-          <p class="book-card__status">Ещё не начата</p>
-          <a class="button button_primary book-card__action" href="index.html">Начать читать</a>
-        </article>
+        <section class="author-card" aria-labelledby="author-shipton">
+          <h2 class="author-card__title" id="author-shipton">Vicky Shipton</h2>
+          <ul class="author-card__books">
+            <li class="author-card__book">
+              <span>Daniel Radcliffe</span>
+              <a class="button button_text author-card__action" href="index.html">читать</a>
+            </li>
+          </ul>
+        </section>
 
-        <article class="book-card">
-          <h2 class="book-card__title">Daniel Radcliffe</h2>
-          <p class="book-card__author">Vicky Shipton</p>
-          <p class="book-card__status">Место чтения сохранено</p>
-          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
-          <button class="button button_text book-card__delete" type="button">Удалить из Reader</button>
-        </article>
-
-        <article class="book-card">
-          <h2 class="book-card__title">Как устроена экономика</h2>
-          <p class="book-card__author">Ха-Джун Чанг</p>
-          <p class="book-card__status">Место чтения сохранено</p>
-          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
-          <button class="button button_text book-card__delete" type="button">Удалить из Reader</button>
-        </article>
+        <section class="author-card" aria-labelledby="author-chang">
+          <h2 class="author-card__title" id="author-chang">Ха-Джун Чанг</h2>
+          <ul class="author-card__books">
+            <li class="author-card__book">
+              <span>Как устроена экономика</span>
+              <a class="button button_text author-card__action" href="index.html">читать</a>
+            </li>
+          </ul>
+        </section>
       </div>
     </main>
   </body>
