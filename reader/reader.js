@@ -17,7 +17,6 @@ let paginationFrame;
 function restoreFontSize() {
   const savedFontSize = localStorage.getItem(fontSizeStorageKey);
   const savedInput = Array.from(fontSizeInputs).find((input) => input.value === savedFontSize);
-
   if (!savedInput) return;
 
   savedInput.checked = true;
@@ -49,11 +48,12 @@ function getPageMetrics() {
 
 function renderPage() {
   const { pageWidth } = getPageMetrics();
+  const isLastPage = currentPage === pageCount - 1;
 
   viewport.scrollLeft = currentPage * pageWidth;
-  progressElement.textContent = `${currentPage + 1} из ${pageCount}`;
+  progressElement.textContent = `Страница ${currentPage + 1} из ${pageCount}`;
   previousButton.disabled = currentPage === 0;
-  nextButton.disabled = currentPage === pageCount - 1;
+  nextButton.textContent = isLastPage ? "Прочитано" : "Дальше";
 }
 
 function showPage(page) {
@@ -76,7 +76,13 @@ function schedulePagination() {
 }
 
 previousButton.addEventListener("click", () => showPage(currentPage - 1));
-nextButton.addEventListener("click", () => showPage(currentPage + 1));
+nextButton.addEventListener("click", () => {
+  if (currentPage === pageCount - 1) {
+    window.location.href = "books.html";
+    return;
+  }
+  showPage(currentPage + 1);
+});
 settingsToggle.addEventListener("click", () => {
   setSettingsOpen(settingsToggle.getAttribute("aria-expanded") !== "true");
 });
@@ -85,6 +91,7 @@ fontSizeInputs.forEach((input) => {
   input.addEventListener("change", () => {
     reader.dataset.fontSize = input.value;
     localStorage.setItem(fontSizeStorageKey, input.value);
+    setSettingsOpen(false);
     schedulePagination();
   });
 });
@@ -107,7 +114,7 @@ window.addEventListener("keydown", (event) => {
 
   if (event.key === "ArrowRight" || event.key === "PageDown") {
     event.preventDefault();
-    showPage(currentPage + 1);
+    if (currentPage < pageCount - 1) showPage(currentPage + 1);
   }
 });
 
