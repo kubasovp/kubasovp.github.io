@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,200..900&display=swap" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="reader.js" defer></script>
+    <link rel="stylesheet" href="styles.css?v=2" />
+    <script src="reader.js?v=2" defer></script>
   </head>
   <body>
     <div class="reader" data-font-size="24">
@@ -20,23 +20,24 @@
         </div>
       </header>
 
-      <div class="reader-settings" id="reader-settings" aria-hidden="true">
-        <button class="reader-settings__overlay" type="button" aria-label="Закрыть настройки" tabindex="-1" data-reader-settings-close></button>
-        <aside class="reader-settings__panel" role="dialog" aria-modal="true" aria-labelledby="reader-settings-title">
-          <h2 class="reader-settings__title" id="reader-settings-title">Размер текста</h2>
-          <p class="reader-settings__hint">Изменение применяется сразу и сохраняет место чтения.</p>
-          <div class="reader-settings__options">
-            <label class="reader-settings__option">
-              <input type="radio" name="font-size" value="18" />
-              <span>18 px</span>
-            </label>
-            <label class="reader-settings__option">
-              <input type="radio" name="font-size" value="24" checked />
-              <span>24 px</span>
-            </label>
+      <aside class="reader-settings" id="reader-settings" aria-hidden="true" aria-labelledby="reader-settings-title">
+        <div class="reader-settings__panel">
+          <div class="reader-settings__inner">
+            <h2 class="reader-settings__title" id="reader-settings-title">Размер текста</h2>
+            <p class="reader-settings__hint">Изменение применяется сразу и сохраняет место чтения.</p>
+            <div class="reader-settings__options">
+              <label class="reader-settings__option">
+                <input type="radio" name="font-size" value="18" />
+                <span>18 px</span>
+              </label>
+              <label class="reader-settings__option">
+                <input type="radio" name="font-size" value="24" checked />
+                <span>24 px</span>
+              </label>
+            </div>
           </div>
-        </aside>
-      </div>
+        </div>
+      </aside>
 
       <main class="reader__main">
         <section class="reader__page" aria-label="Страница книги">
