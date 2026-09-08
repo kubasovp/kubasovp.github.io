@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Читаю сейчас — Reader</title>
+    <link rel="stylesheet" href="styles.css?v=4" />
+  </head>
+  <body>
+    <main class="library" aria-labelledby="reading-title">
+      <h1 class="library__title" id="reading-title">Читаю сейчас</h1>
+
+      <nav class="library__nav" aria-label="Разделы библиотеки">
+        <a class="button button_primary" href="reading.html" aria-current="page">Читаю сейчас</a>
+        <a class="button button_outline" href="books.html">Моя библиотека</a>
+      </nav>
+
+      <p class="library__subtitle library__subtitle_spaced">Книги, чтение которых уже начато</p>
+
+      <div class="library__books">
+        <article class="book-card">
+          <h2 class="book-card__title">Четыре желания</h2>
+          <p class="book-card__author">Константин Дмитриевич Ушинский</p>
+          <p class="book-card__status">Место чтения сохранено</p>
+          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
+        </article>
+
+        <article class="book-card">
+          <h2 class="book-card__title">Daniel Radcliffe</h2>
+          <p class="book-card__author">Vicky Shipton</p>
+          <p class="book-card__status">Место чтения сохранено</p>
+          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
+          <button class="button button_text book-card__delete" type="button">Удалить из Reader</button>
+        </article>
+
+        <article class="book-card">
+          <h2 class="book-card__title">Как устроена экономика</h2>
+          <p class="book-card__author">Ха-Джун Чанг</p>
+          <p class="book-card__status">Место чтения сохранено</p>
+          <a class="button button_primary book-card__action" href="index.html">Продолжить чтение</a>
+          <button class="button button_text book-card__delete" type="button">Удалить из Reader</button>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
