@@ -236,6 +236,7 @@ h1, h2, p { margin-top: 0; }
   overflow: hidden;
   visibility: hidden;
   pointer-events: none;
+  transition: visibility 0s linear 220ms;
 }
 .reader-settings__panel {
   border-bottom: 1px solid var(--border);
@@ -251,6 +252,7 @@ h1, h2, p { margin-top: 0; }
 .reader-settings_open {
   visibility: visible;
   pointer-events: auto;
+  transition-delay: 0s;
 }
 .reader-settings_open .reader-settings__panel { transform: translateY(0); }
 .reader-settings__title {
@@ -291,5 +293,6 @@ h1, h2, p { margin-top: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reader-settings,
   .reader-settings__panel { transition: none; }
 }
