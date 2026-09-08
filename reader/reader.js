@@ -6,13 +6,13 @@ const progressElement = document.querySelector(".reader__progress");
 const reader = document.querySelector(".reader");
 const settings = document.querySelector(".reader-settings");
 const settingsToggle = document.querySelector("[data-reader-settings-toggle]");
-const settingsClose = document.querySelector("[data-reader-settings-close]");
 const fontSizeInputs = document.querySelectorAll('input[name="font-size"]');
 const fontSizeStorageKey = "reader-font-size";
 
 let currentPage = 0;
 let pageCount = 1;
 let paginationFrame;
+let settingsHideTimer;
 
 function restoreFontSize() {
   const savedFontSize = localStorage.getItem(fontSizeStorageKey);
@@ -24,15 +24,20 @@ function restoreFontSize() {
 }
 
 function setSettingsOpen(isOpen) {
+  clearTimeout(settingsHideTimer);
   settings.classList.toggle("reader-settings_open", isOpen);
-  settings.setAttribute("aria-hidden", String(!isOpen));
   settingsToggle.setAttribute("aria-expanded", String(isOpen));
 
   if (isOpen) {
-    settings.querySelector('input[name="font-size"]:checked').focus();
-  } else {
-    settingsToggle.focus();
+    settings.setAttribute("aria-hidden", "false");
+    settings.querySelector('input[name="font-size"]:checked')?.focus();
+    return;
   }
+
+  settingsHideTimer = window.setTimeout(() => {
+    settings.setAttribute("aria-hidden", "true");
+  }, 220);
+  settingsToggle.focus();
 }
 
 function getPageMetrics() {
@@ -86,7 +91,6 @@ nextButton.addEventListener("click", () => {
 settingsToggle.addEventListener("click", () => {
   setSettingsOpen(settingsToggle.getAttribute("aria-expanded") !== "true");
 });
-settingsClose.addEventListener("click", () => setSettingsOpen(false));
 fontSizeInputs.forEach((input) => {
   input.addEventListener("change", () => {
     reader.dataset.fontSize = input.value;
