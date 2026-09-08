@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Моя библиотека — Reader</title>
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=7" />
   </head>
   <body>
     <main class="library" aria-labelledby="library-title">
@@ -18,21 +18,26 @@
       </details>
 
       <div class="library__toolbar">
-        <p class="library__subtitle">Все книги · по автору</p>
         <a class="button button_outline" href="add-book.html">Добавить книгу</a>
       </div>
+
+      <p class="library__subtitle">Книги по автору</p>
 
       <div class="author-list">
         <section class="author-card" aria-labelledby="author-ushinsky">
           <h2 class="author-card__title" id="author-ushinsky">Константин Дмитриевич Ушинский</h2>
           <ul class="author-card__books">
             <li class="author-card__book">
-              <span>Четыре желания</span>
-              <a class="button button_text author-card__action" href="index.html">читать</a>
+              <a class="author-card__book-link" href="index.html">
+                <span>Четыре желания</span>
+                <span class="author-card__action">читать</span>
+              </a>
             </li>
             <li class="author-card__book">
-              <span>Репка</span>
-              <a class="button button_text author-card__action" href="index.html">читать</a>
+              <a class="author-card__book-link" href="index.html">
+                <span>Репка</span>
+                <span class="author-card__action">читать</span>
+              </a>
             </li>
           </ul>
         </section>
@@ -41,8 +46,10 @@
           <h2 class="author-card__title" id="author-shipton">Vicky Shipton</h2>
           <ul class="author-card__books">
             <li class="author-card__book">
-              <span>Daniel Radcliffe</span>
-              <a class="button button_text author-card__action" href="index.html">читать</a>
+              <a class="author-card__book-link" href="index.html">
+                <span>Daniel Radcliffe</span>
+                <span class="author-card__action">читать</span>
+              </a>
             </li>
           </ul>
         </section>
@@ -51,8 +58,10 @@
           <h2 class="author-card__title" id="author-chang">Ха-Джун Чанг</h2>
           <ul class="author-card__books">
             <li class="author-card__book">
-              <span>Как устроена экономика</span>
-              <a class="button button_text author-card__action" href="index.html">читать</a>
+              <a class="author-card__book-link" href="index.html">
+                <span>Как устроена экономика</span>
+                <span class="author-card__action">читать</span>
+              </a>
             </li>
           </ul>
         </section>
